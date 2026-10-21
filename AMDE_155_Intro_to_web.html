@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMDE 155 — Introduction to Web Design | Nicholas D’Angelo</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#202326; --muted:#686b6b; --line:#d8d5cd;
+  --orange:#e9783d; --blue:#4b87a8; --pale-blue:#e9f0f2;
+  --max:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.58}
+a{color:var(--blue);text-underline-offset:3px}
+a:hover{color:var(--orange)}
+.site-head{background:var(--paper)}
+.head-inner{max-width:var(--max);margin:auto;padding:20px 30px 17px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line)}
+.brand{font-weight:900;letter-spacing:.045em;font-size:.82rem;line-height:1.25;text-transform:uppercase;text-decoration:none;color:var(--ink);max-width:280px;display:block}
+.brand span{color:var(--orange)}
+.nav{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.13em}
+.nav a{color:inherit;text-decoration:none;margin-left:26px}
+.nav a:hover{color:var(--orange)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 36px}
+.hero{padding:52px 0 34px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:48px;align-items:end;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--orange)}
+.hero h1{font-size:clamp(3rem,6.2vw,6rem);letter-spacing:-.075em;line-height:.82;margin:18px 0 20px;font-weight:800;max-width:700px}
+.hero h1 .title-kicker{display:block;font-size:.36em;line-height:1.2;letter-spacing:-.045em;font-weight:500;margin-bottom:.3em;color:var(--blue)}
+.noj-kicker{font-family:"noj-kicker",inherit;font-weight:500;letter-spacing:-.045em;text-transform:none}
+.hero h1 em{display:block;font-style:normal;text-transform:uppercase;letter-spacing:-.065em;color:var(--blue);font-size:1em;line-height:.88}
+.hero .intro{font-size:1rem;line-height:1.55;max-width:460px;color:#4e5151;margin:0}
+.hero-art{position:relative;min-height:220px;align-self:stretch;display:flex;align-items:stretch}
+.hero-art svg{width:100%;height:100%;min-height:220px;max-height:330px;display:block;background:#e9f0f2}
+.hero-art:after{content:"AMDE  /  155";position:absolute;bottom:-12px;right:-12px;background:var(--orange);color:#fff;padding:10px 14px;font-size:.66rem;font-weight:700;letter-spacing:.15em}
+.meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin:20px 0 0;border-top:1px solid var(--line)}
+.meta{padding:9px 0 10px;border-bottom:1px solid var(--line);font-size:.83rem;line-height:1.45}
+.meta b{display:block;font-size:.63rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:4px}
+.layout{display:grid;grid-template-columns:170px minmax(0,1fr);gap:54px;padding:38px 0 64px}
+.sidebar{align-self:start;position:sticky;top:24px;padding-top:4px}
+.sidebar .label{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:14px}
+.sidebar a{display:block;text-decoration:none;color:#4c5051;padding:7px 0;border-bottom:1px solid var(--line);font-size:.78rem;line-height:1.35}
+.sidebar a:hover{color:var(--orange)}
+main{min-width:0}
+main h2{font-size:1.5rem;letter-spacing:-.05em;line-height:1.12;margin:38px 0 13px;padding-top:18px;border-top:1px solid var(--line);font-weight:700;color:var(--blue)}
+main h2:first-child{margin-top:0}
+main p{margin:0 0 12px;max-width:790px}
+main ul{padding-left:22px;margin:0 0 22px}
+main li{padding:2px 0}
+main h2[id*="policies"],main h2[id*="integrity"],main h2[id*="university"]{font-size:1.38rem}
+.callout{border-left:3px solid var(--orange);padding:13px 18px;background:#f0eee8;margin:18px 0}
+.table-wrap{overflow-x:auto;margin:22px 0 38px}
+table{width:100%;border-collapse:collapse;font-size:.8rem;line-height:1.48}
+th{background:var(--blue);color:#fff;text-align:left;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even),tr:nth-child(even) td{background:#f3f1eb}
+main .table-wrap:first-child table th{background:var(--ink)}
+footer{border-top:1px solid var(--line);padding:22px 0 30px;color:var(--muted);font-size:.73rem;letter-spacing:.02em}
+footer .foot-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:850px){
+ .head-inner{padding:22px 22px;align-items:flex-start;flex-direction:column;gap:14px}
+ .nav a{margin:0 18px 0 0}
+ .wrap{padding:0 22px}
+ .hero{grid-template-columns:1fr;gap:28px;padding:38px 0 28px}
+ .hero h1{font-size:clamp(3.3rem,13vw,6rem)}
+ .hero-art{min-height:190px}
+ .hero-art svg{width:100%;height:100%;min-height:220px;max-height:330px;display:block;background:#e9f0f2}
+ .layout{grid-template-columns:1fr;gap:28px;padding:28px 0 48px}
+ .sidebar{position:static}
+ .sidebar nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+ .meta-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+ .wrap{padding:0 17px}
+ .hero h1{font-size:3.15rem}
+ .meta-grid{grid-template-columns:1fr}
+ .sidebar nav{grid-template-columns:1fr}
+ th,td{padding:10px 11px}
+}
+@media print{
+ body{background:white;font-size:10pt}.site-head,.sidebar,.hero-art:after{display:none}
+ .wrap{max-width:none;padding:0}.hero{display:block;padding:10px 0 20px}.hero h1{font-size:32pt}
+ .hero-art{display:none}.layout{display:block;padding:20px 0}main h2{break-after:avoid;margin-top:20px}
+ a{color:inherit;text-decoration:none}.table-wrap{overflow:visible}footer{padding:10px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<section class="hero">
+<div>
+<div class="eyebrow">Course guide · Fall 2027</div>
+<h1><span class="title-kicker noj-kicker">Web</span><em>DESIGN</em></h1>
+<p class="intro">An introduction to web design principles, usability, HTML, CSS, and web-authoring tools.</p>
+<div class="meta-grid">
+<div class="meta"><b>Course</b>AMDE 155 · Introduction to Web Design</div>
+<div class="meta"><b>Term</b>Fall 2027</div>
+<div class="meta"><b>Meeting</b>Monday / Wednesday · 8:00–9:45 AM</div>
+<div class="meta"><b>Instructor</b>Nicholas D’Angelo</div>
+<div class="meta"><b>Location</b>Rosenkrans Hall East · Classroom C</div>
+<div class="meta"><b>Office hours</b>Mon 10 AM–12 PM · Tue 12–1 PM · Wed 10 AM–12 PM</div>
+<div class="meta"><b>Contact</b><a href="mailto:ndangelo@esu.edu">ndangelo@esu.edu</a> · 570.422.3048</div>
+<div class="meta"><b>Appointments</b><a href="https://calendar.app.google/FajJhuPiCXJYfV9G8">Book an appointment</a></div>
+</div>
+</div>
+<div class="hero-art" role="img" aria-label="Illustration of people, community systems, and shared social design ideas">
+<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" aria-labelledby="socialGraphicTitle socialGraphicDesc">
+<title id="socialGraphicTitle">Geometric placeholder for Introduction to Web Design</title>
+<desc id="socialGraphicDesc">A simple abstract composition of geometric shapes in blue, orange, cream, and black.</desc>
+<rect width="640" height="420" fill="#e9f0f2"/>
+<rect x="26" y="26" width="588" height="368" fill="none" stroke="#202326" stroke-width="2"/>
+<rect x="52" y="52" width="170" height="170" fill="#4b87a8"/>
+<circle cx="307" cy="137" r="84" fill="#e9783d"/>
+<rect x="405" y="52" width="183" height="170" fill="#fbfaf7"/>
+<path d="M405 222 L588 52 L588 222Z" fill="#202326"/>
+<circle cx="145" cy="307" r="60" fill="#fbfaf7" stroke="#202326" stroke-width="3"/>
+<circle cx="145" cy="307" r="29" fill="#e9783d"/>
+<rect x="239" y="263" width="349" height="88" fill="#4b87a8"/>
+<path d="M239 263 L327 351 L415 263 L503 351 L588 263" fill="none" stroke="#fbfaf7" stroke-width="5"/>
+<rect x="52" y="363" width="536" height="5" fill="#202326"/>
+<circle cx="307" cy="137" r="34" fill="#fbfaf7"/>
+<rect x="292" y="122" width="30" height="30" fill="#202326" transform="rotate(45 307 137)"/>
+</svg>
+</div>
+</section>
+<div class="layout">
+<aside class="sidebar"><div class="label">On this page</div><nav>
+<a href="#course-description">Course description</a><a href="#prerequisites">Prerequisites</a><a href="#student-learning-outcomes">Learning outcomes</a><a href="#course-content">Course content</a><a href="#sensitive-topics">Sensitive topics &amp; dialogue</a><a href="#instructional-process">Instructional process</a><a href="#grading">Grading</a><a href="#attendance-policies">Attendance</a><a href="#university-student-learning-outcomes">University outcomes</a><a href="#preferred-name">Student resources &amp; policies</a><a href="#calendar">Course calendar</a>
+</nav></aside><main>
+<h2 id="course-description">Course description</h2>
+<p>Introduction to Web Design introduces students to principles and methods used in web design and production. The skills learned in this course will be used to create simple web applications using web-authoring tools. Assignments provide hands-on experience in introductory web design, including document structure and content, site maintenance, and the use of digital images and graphics.</p>
+<div class="callout"><strong>Course goal</strong><br>Gain beginning skills in web development, including an understanding of web design, usability, UXD, information architecture (IA), and web authoring.</div>
+<h2 id="student-learning-objectives">Student learning objectives</h2>
+<p>Students will:</p>
+<ul><li>Demonstrate an understanding of basic web design, usability, and web authoring tools.</li><li>Evaluate websites for information organization, content representation, and site navigation.</li><li>Evaluate and compare web development software and tools.</li><li>Design and build aesthetically pleasing static websites using WYSIWYG (“what you see is what you get”) editors and design tools.</li><li>Design web media effectively for identified target markets.</li><li>Practice legal use of images and content.</li></ul>
+<h2 id="course-content">Course content</h2>
+<p>To become proficient in web design and programming/markup languages, students will work with:</p>
+<ol><li>HTML markup</li><li>Website production</li><li>Establishing a base for a webpage</li><li>Basic CSS and HTML5 styles</li><li>Content Management Systems (CMS)</li><li>CMS and WordPress</li><li>Simple WordPress blog creation</li><li>Jetpack and Google Analytics</li><li>Business website production</li></ol>
+<h2 id="required-text">Required text</h2><p>Will be provided.</p>
+<h2 id="university-student-learning-outcomes">University undergraduate student learning outcomes</h2>
+<p>Upon earning an undergraduate degree from East Stroudsburg University, students will value creativity, diversity, ethical behavior, and professionalism. They will achieve college-level proficiency in the following university-wide student learning outcomes:</p>
+<ol><li>Demonstrate an understanding of their role as citizens of a diverse, global society.</li><li>Utilize critical thinking skills.</li><li>Communicate orally, in writing, and through other formats.</li><li>Demonstrate information literacy and technological skills.</li><li>Apply scientific reasoning to solve problems.</li><li>Create and/or critique various forms of media.</li><li>Understand various models for the healthy development of the whole person.</li></ol>
+<h2 id="instructional-process">Instructional process</h2>
+<ol><li>Lessons: daily and weekly projects as assigned by the professor.</li><li>Lectures: 30–40-minute lectures per week.</li><li>Weekly assignments: software technique assignments as assigned.</li><li>Critiques: class critiques will follow assignments when appropriate.</li><li>Lab time: in-class time to work on projects and practice techniques.</li></ol>
+<p>This class requires homework, which may be up to 10 hours weekly, depending on time spent in class for projects. Please schedule your time accordingly. Responsibilities at work or home will not be accepted as excuses for late or missing projects.</p>
+<h2 id="grading">Grading</h2>
+<p>The instructor will consider completion on time, proper use of techniques demonstrated in previous DMET courses, use of class-specific techniques, and meeting deadlines. Evaluation may include:</p>
+<ul><li>Design and clarity of visual communication</li><li>Concept and creativity</li><li>Ability to follow instructions and meet deadlines</li><li>Computer skills and verbal presentation</li><li>Thoughtful, original, and creative concepts</li><li>Craftsmanship and mastery of application techniques</li><li>Initiative and imaginative responses</li><li>Class participation and discussion</li><li>Individual progress throughout the semester</li><li>Attendance</li></ul>
+<div class="table-wrap"><table><thead><tr><th>Course evaluation</th><th>Weight</th></tr></thead><tbody><tr><td>Weekly assignments</td><td>40%</td></tr><tr><td>Attendance</td><td>25%</td></tr><tr><td>Midterm</td><td>10%</td></tr><tr><td>Final</td><td>25%</td></tr></tbody></table></div>
+<h2 id="project-rubric">Project rubric</h2>
+<p>Projects are evaluated across five levels, from Level 5 (5 points) to Level 1 (1 point), considering planning, creative development, effort, originality, craftsmanship, and reflection.</p>
+<div class="table-wrap"><table><thead><tr><th>Criteria</th><th>Level 5 · 5 points</th><th>Level 4 · 4 points</th><th>Level 3 · 3 points</th><th>Level 2 · 2 points</th><th>Level 1 · 1 point</th></tr></thead><tbody>
+<tr><td><strong>Creative and original planning</strong></td><td>Broad relevant research; clear audience and specific goal; extensive sketches; design principles used effectively; thoughtful color and space.</td><td>Relevant media; defined audience and clear goal; several exploratory sketches; design principles applied.</td><td>Some relevant media and initial sketches; goal or audience unclear; limited design exploration.</td><td>Minimal research and planning; missing parts; little exploration; awkward color and space.</td><td>Little or no research, goal, planning, or exploration; no evidence of design principles.</td></tr>
+<tr><td><strong>Effort and persistence</strong></td><td>Thoroughly completed, polished, professional project requiring extensive effort.</td><td>Completed with effort; some polish could be improved.</td><td>Completed but could be improved; adequate interpretation but lacks finish.</td><td>Completed with minimum effort.</td><td>Not finished adequately.</td></tr>
+<tr><td><strong>Creativity and originality</strong></td><td>Explores several choices and unusual combinations; connects prior knowledge; demonstrates problem-solving.</td><td>Tries several ideas and makes logical decisions with some unusual connections.</td><td>Tries few ideas; limited originality or relies on symbols rather than personal observation.</td><td>Fulfills assignment with little experimentation; some work may be copied.</td><td>No original thought; substantially or wholly copied.</td></tr>
+<tr><td><strong>Craftsmanship, skill, and consistency</strong></td><td>Excellent skill and craft throughout; carefully finished and consistent.</td><td>Aesthetic result with some unfinished details; good skill.</td><td>Average craft and adequate skill, but careless or inconsistent details.</td><td>Below-average skill, minimal effort, inconsistent execution.</td><td>Poor craft; little effort or understanding; most details unfinished.</td></tr>
+<tr><td><strong>Assessment and reflection</strong></td><td>Keeps process work and notes; conclusions supported by goals; realistic, insightful improvements.</td><td>Keeps some process work and notes; conclusion reasonably supported; useful improvements.</td><td>Few process materials; conclusion unsupported; limited suggestions.</td><td>Little documentation; weak conclusion; unrealistic suggestion.</td><td>No process documentation or conclusion; no relevant improvement suggestions.</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Overall score</th><th>Level</th><th>Grade descriptors from source</th></tr></thead><tbody><tr><td>24 or more</td><td>Level 5</td><td>Excellent, outstanding, exemplary · 100, 95, 90% · A to A−</td></tr><tr><td>19 or more</td><td>Level 4</td><td>Above average, very good, acceptable · 89, 85, 80% · B to B−</td></tr><tr><td>14 or more</td><td>Level 3</td><td>Average, good, not yet acceptable · 79, 75, 70% · C to C−</td></tr><tr><td>9 or more</td><td>Level 2</td><td>Below average, needs improvement · 69, 65, 60% D</td></tr><tr><td>0 or more</td><td>Level 1</td><td>Unsatisfactory, poor, unacceptable · 59% and below E</td></tr></tbody></table></div>
+<p><strong>Incomplete/late:</strong> One point is deleted every day a project is late. After six days, the assignment is classified as not submitted.</p>
+<h2 id="evaluation">Evaluation</h2>
+<ul><li>Regular class attendance is mandatory.</li><li>Lectures, directions, and critiques will not be repeated.</li><li>Each student is expected to stay for the entire class.</li></ul>
+<h2 id="dmet-outcomes">Undergraduate DMET outcomes</h2>
+<ul><li><strong>Creation Process:</strong> apply a systematic approach to the creative process of multimedia design and production.</li><li><strong>Design Production:</strong> use principles, aesthetics, and professional techniques to produce media at cutting-edge standards.</li><li><strong>Social Communication:</strong> engage in social communication and networking that demonstrates ethical citizenship and cross-cultural awareness.</li><li><strong>Vision Formulation:</strong> develop a vision of media and technology design that promotes creativity, effective communication, and collaborative problem-solving.</li><li><strong>Critical Thought:</strong> critically and professionally evaluate the impact and implications of media they create and consume.</li><li><strong>Professional Contribution:</strong> contribute professionally across a diverse range of employment levels in media and creative industries.</li><li><strong>Career Ready:</strong> enter the global market equipped to address evolving standards, techniques, and formats of media.</li></ul>
+<h2 id="attendance-policies">Attendance policies</h2>
+<p>One unexcused absence is permitted. More than one absence lowers the final grade. Four absences may result in a failing grade regardless of work completed. Attendance is taken at the end of class. Three tardies equal one absence. If you will be late or absent and know ahead of time, email the instructor in advance.</p>
+<p>A project not ready at the beginning of class or handed in after a critique on the due date will be penalized by one letter grade for each class it is late. An absence or limited lab access is not an excuse for late work. Projects more than three days late will not be accepted. All assignments are due at the start of class. Participate actively in critiques, respect classmates, and give presenters your attention. Class disturbances will not be tolerated. Phones should be turned off; texting is not allowed during the course.</p>
+<h2 id="academic-integrity">Academic integrity policy</h2>
+<p>All students are expected to engage in academically honest work. Identify facts and sources accurately. Do not submit work generated by an AI program as your own; material generated by AI must be cited like any other reference material. Willful academic dishonesty, including copying from websites, AI tools, print sources, or other people, may be referred to the Office of Student Conduct and Community Standards and may result in failure.</p>
+<h2 id="intellectual-property">Protecting faculty intellectual property and student privacy</h2>
+<p>ESU prohibits recording or screenshots of any class or reproducing course materials without written permission from the faculty member and any other individual whose participation is recorded. This includes lectures, class activities, publications, presentations, handouts, videos, tables, graphs, and discussions. Violations may result in discipline and/or legal action. Approved OASIS accommodations remain in effect.</p>
+<h2 id="title-ix">Title IX statement</h2>
+<p>East Stroudsburg University and its faculty are committed to a safe and productive educational environment. Faculty have reporting obligations regarding incidents of sexual violence and abuse as described in the university policy. Resources: <a href="http://www4.esu.edu/titleix/">ESU Title IX</a>.</p>
+<h2 id="dei">ESU diversity, equity, and inclusion statement</h2>
+<p>ESU is committed to challenging bias and creating a supportive campus climate that contributes to a just, global, and diverse society. Students are encouraged to use campus resources and report bias incidents, discrimination, or harassment. <a href="https://www.esu.edu/about/history_beliefs/diversity-equity-inclusion.cfm">ESU DEI statement</a>.</p>
+<h2 id="extended-absence">Extended student absence procedure</h2>
+<p>The Dean of Students can assist students who miss at least three class days due to illness, personal, or family emergencies. Students or family members can contact 570-422-3461. See the <a href="https://www.esu.edu/registrar/extended_absence.cfm">extended absence procedure</a>.</p>
+<h2 id="accommodations">Accommodation statement</h2>
+<p>Students who need disability accommodations may contact OASIS at 570-422-3954. Students who already have accommodations should give the professor reasonable notice before requesting an accommodation.</p>
+<h2 id="mental-health">Mental health</h2>
+<p>University Counseling Services provides free, confidential Counseling and Psychological Services (CAPS). Call 570-422-3277 or visit <a href="https://www.esu.edu/counseling/index.cfm">ESU Counseling Services</a>. In a crisis or emotional distress, call or text 988.</p>
+<h2 id="webcam">Webcam requirement for synchronous online classes</h2>
+<p>This is included in the supplied syllabus as a standard statement for courses that require webcams. If applicable, sessions or assessments may use Zoom or other instructor-selected technologies, including webcam, screen monitoring, recording, or proctoring tools. Contact the instructor with questions or concerns.</p>
+<h2 id="lab-rules">Cleanliness and lab rules</h2><p>Thoroughly clean your work area in Rosenkrans Hall East before leaving. Follow all computer lab rules, both verbal and posted.</p>
+<h2 id="course-changes">Changes in course requirements</h2><p>The instructor may modify course requirements or timing as circumstances dictate. Students will receive adequate notification.</p>
+<h2 id="student-work">Permission to use student work</h2><p>Students allow Dr. D’Angelo to use assignments, homework, and exams for research, departmental review, accreditation, and web postings unless a student notifies him in writing in advance.</p>
+<h2 id="calendar">Course calendar</h2>
+<p>Weekly project due dates are listed as TBD or TBA in the supplied syllabus. The source labels the mid-semester break “Spring Break”; confirm the applicable Fall 2027 calendar before using that week.</p>
+<div class="table-wrap"><table><thead><tr><th>Week</th><th>Lessons and assignments</th><th>Weekly project due</th></tr></thead><tbody>
+<tr><td>1</td><td>How to make a website; introduction to HTML; headings; block and inline elements; links; images; whitespace and indentation.</td><td>TBD</td></tr>
+<tr><td>2</td><td>CSS: Cascading Style Sheets; units; connecting HTML and CSS; typography.</td><td>TBD</td></tr>
+<tr><td>3</td><td>HTML and CSS: header tag; styling with color; background images; hover states; transitions; child selectors; classes; widths and heights.</td><td>TBD</td></tr>
+<tr><td>4</td><td>Math and CSS: ratios; margins and padding; borders; rounded corners with border radius; filters.</td><td>TBD</td></tr>
+<tr><td>5</td><td>Multicolumn layouts with floats; wrapping elements using floats; overflow; transparency with opacity and RGBA colors; drop shadows.</td><td>TBD</td></tr>
+<tr><td>6</td><td>Mobile-friendly designs with media queries; stylesheet basics; colors; text alignment and spacing; basic and embedded fonts.</td><td>TBD</td></tr>
+<tr><td>7</td><td>Midterm exam: all course content to date.</td><td>TBD</td></tr>
+<tr><td>8</td><td>Positioning; cursors and mouse pointers; transforms (rotations, scaling, and skews); vertical alignment; head tags and search engines; Flexbox; CSS animations; forms; audio, video, and media.</td><td>TBD</td></tr>
+<tr><td>9</td><td>Web fonts.</td><td>TBD</td></tr>
+<tr><td>10</td><td>JavaScript: starting with JavaScript; manipulating data; for loops; functions; adding scripts to pages.</td><td>TBD</td></tr>
+<tr><td>11</td><td>jQuery: events; “what is this?”; jQuery animations; CSS and jQuery together; timers and intervals.</td><td>TBD</td></tr>
+<tr><td>12</td><td>Start of final project.</td><td>TBD</td></tr>
+<tr><td>13</td><td>Wrapping it up; final project due.</td><td>TBA</td></tr>
+<tr><td>14</td><td>Final project work and/or presentation; confirm exact plan with instructor.</td><td>TBA</td></tr>
+<tr><td>15</td><td>Final exam week.</td><td>TBA</td></tr>
+</tbody></table></div>
+</main><footer><div class="foot-inner"><span>AMDE 155 · Social Design Studio</span><span>Social Design Studio / An introduction to HTML, CSS, and web design.</span></div></footer>
+</div></body></html>
