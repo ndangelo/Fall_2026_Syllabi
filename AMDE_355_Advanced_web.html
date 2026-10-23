@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMDE 355 — Advanced Web Design | Nicholas D’Angelo</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#202326; --muted:#686b6b; --line:#d8d5cd;
+  --orange:#e9783d; --blue:#4b87a8; --pale-blue:#e9f0f2;
+  --max:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.58}
+a{color:var(--blue);text-underline-offset:3px}
+a:hover{color:var(--orange)}
+.site-head{background:var(--paper)}
+.head-inner{max-width:var(--max);margin:auto;padding:20px 30px 17px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line)}
+.brand{font-weight:900;letter-spacing:.045em;font-size:.82rem;line-height:1.25;text-transform:uppercase;text-decoration:none;color:var(--ink);max-width:280px;display:block}
+.brand span{color:var(--orange)}
+.nav{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.13em}
+.nav a{color:inherit;text-decoration:none;margin-left:26px}
+.nav a:hover{color:var(--orange)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 36px}
+.hero{padding:52px 0 34px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:48px;align-items:end;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--orange)}
+.hero h1{font-size:clamp(3rem,6.2vw,6rem);letter-spacing:-.075em;line-height:.82;margin:18px 0 20px;font-weight:800;max-width:700px}
+.hero h1 .title-kicker{display:block;font-size:.36em;line-height:1.2;letter-spacing:-.045em;font-weight:500;margin-bottom:.3em;color:var(--blue)}
+.noj-kicker{font-family:"noj-kicker",inherit;font-weight:500;letter-spacing:-.045em;text-transform:none}
+.hero h1 em{display:block;font-style:normal;text-transform:uppercase;letter-spacing:-.065em;color:var(--blue);font-size:1em;line-height:.88}
+.hero .intro{font-size:1rem;line-height:1.55;max-width:460px;color:#4e5151;margin:0}
+.hero-art{position:relative;min-height:220px;align-self:stretch;display:flex;align-items:stretch}
+.hero-art svg{width:100%;height:100%;min-height:220px;max-height:330px;display:block;background:#e9f0f2}
+.hero-art:after{content:"AMDE  /  355";position:absolute;bottom:-12px;right:-12px;background:var(--orange);color:#fff;padding:10px 14px;font-size:.66rem;font-weight:700;letter-spacing:.15em}
+.meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin:20px 0 0;border-top:1px solid var(--line)}
+.meta{padding:9px 0 10px;border-bottom:1px solid var(--line);font-size:.83rem;line-height:1.45}
+.meta b{display:block;font-size:.63rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:4px}
+.layout{display:grid;grid-template-columns:170px minmax(0,1fr);gap:54px;padding:38px 0 64px}
+.sidebar{align-self:start;position:sticky;top:24px;padding-top:4px}
+.sidebar .label{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:14px}
+.sidebar a{display:block;text-decoration:none;color:#4c5051;padding:7px 0;border-bottom:1px solid var(--line);font-size:.78rem;line-height:1.35}
+.sidebar a:hover{color:var(--orange)}
+main{min-width:0}
+main h2{font-size:1.5rem;letter-spacing:-.05em;line-height:1.12;margin:38px 0 13px;padding-top:18px;border-top:1px solid var(--line);font-weight:700;color:var(--blue)}
+main h2:first-child{margin-top:0}
+main p{margin:0 0 12px;max-width:790px}
+main ul{padding-left:22px;margin:0 0 22px}
+main li{padding:2px 0}
+main h2[id*="policies"],main h2[id*="integrity"],main h2[id*="university"]{font-size:1.38rem}
+.callout{border-left:3px solid var(--orange);padding:13px 18px;background:#f0eee8;margin:18px 0}
+.table-wrap{overflow-x:auto;margin:22px 0 38px}
+table{width:100%;border-collapse:collapse;font-size:.8rem;line-height:1.48}
+th{background:var(--blue);color:#fff;text-align:left;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even),tr:nth-child(even) td{background:#f3f1eb}
+main .table-wrap:first-child table th{background:var(--ink)}
+footer{border-top:1px solid var(--line);padding:22px 0 30px;color:var(--muted);font-size:.73rem;letter-spacing:.02em}
+footer .foot-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:850px){
+ .head-inner{padding:22px 22px;align-items:flex-start;flex-direction:column;gap:14px}
+ .nav a{margin:0 18px 0 0}
+ .wrap{padding:0 22px}
+ .hero{grid-template-columns:1fr;gap:28px;padding:38px 0 28px}
+ .hero h1{font-size:clamp(3.3rem,13vw,6rem)}
+ .hero-art{min-height:190px}
+ .hero-art svg{width:100%;height:100%;min-height:220px;max-height:330px;display:block;background:#e9f0f2}
+ .layout{grid-template-columns:1fr;gap:28px;padding:28px 0 48px}
+ .sidebar{position:static}
+ .sidebar nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+ .meta-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+ .wrap{padding:0 17px}
+ .hero h1{font-size:3.15rem}
+ .meta-grid{grid-template-columns:1fr}
+ .sidebar nav{grid-template-columns:1fr}
+ th,td{padding:10px 11px}
+}
+@media print{
+ body{background:white;font-size:10pt}.site-head,.sidebar,.hero-art:after{display:none}
+ .wrap{max-width:none;padding:0}.hero{display:block;padding:10px 0 20px}.hero h1{font-size:32pt}
+ .hero-art{display:none}.layout{display:block;padding:20px 0}main h2{break-after:avoid;margin-top:20px}
+ a{color:inherit;text-decoration:none}.table-wrap{overflow:visible}footer{padding:10px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<section class="hero">
+<div>
+<div class="eyebrow">Course guide · Fall 2026</div>
+<h1><span class="title-kicker noj-kicker">Advanced</span><em>WEB DESIGN</em></h1>
+<p class="intro">An advanced, project-based web design studio focused on responsive interfaces, interactive experiences, and professional web production.</p>
+<div class="meta-grid">
+<div class="meta"><b>Course</b>AMDE 355 · Advanced Web Design</div>
+<div class="meta"><b>Term</b>Fall 2026</div>
+<div class="meta"><b>Meeting</b>9:30–10:45 AM</div>
+<div class="meta"><b>Instructor</b>Nicholas D’Angelo</div>
+<div class="meta"><b>Location</b>Rosenkranz East · Classroom C</div>
+<div class="meta"><b>Office hours</b>Mon 9:30–11:30 AM · Tue 12:30–1:30 PM · Wed 9:30–11:30 AM</div>
+<div class="meta"><b>Contact</b><a href="mailto:ndangelo@esu.edu">ndangelo@esu.edu</a> · 570.422.3048</div>
+<div class="meta"><b>Appointments</b><a href="https://calendar.app.google/FajJhuPiCXJYfV9G8">Book an appointment</a></div>
+</div>
+</div>
+<div class="hero-art" role="img" aria-label="Abstract geometric illustration for an introductory web design course">
+<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" aria-labelledby="webGraphicTitle webGraphicDesc">
+<title id="webGraphicTitle">Terminal-inspired web design graphic</title>
+<desc id="webGraphicDesc">A dark terminal window with colorful code lines, a blinking cursor motif, and a stylized browser panel.</desc>
+<defs><linearGradient id="screenGlow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#162c35"/><stop offset="1" stop-color="#202326"/></linearGradient></defs>
+<rect width="640" height="420" fill="#e9f0f2"/>
+<circle cx="548" cy="76" r="48" fill="#e9783d" opacity=".9"/>
+<circle cx="548" cy="76" r="26" fill="#e9f0f2"/>
+<rect x="36" y="38" width="568" height="340" rx="13" fill="#202326"/>
+<path d="M36 51 Q36 38 49 38 H591 Q604 38 604 51 V84 H36Z" fill="#343b3f"/>
+<circle cx="58" cy="61" r="6" fill="#e9783d"/><circle cx="78" cy="61" r="6" fill="#e9f0f2"/><circle cx="98" cy="61" r="6" fill="#4b87a8"/>
+<text x="320" y="66" text-anchor="middle" fill="#c8d2d4" font-family="monospace" font-size="11" letter-spacing="1.5">AMDE_355 / ADVANCED WEB LAB</text>
+<rect x="53" y="101" width="323" height="252" rx="5" fill="url(#screenGlow)"/>
+<text x="73" y="129" fill="#e9783d" font-family="monospace" font-size="13">01</text><text x="101" y="129" fill="#8ec7e0" font-family="monospace" font-size="13">&lt;!DOCTYPE html&gt;</text>
+<text x="73" y="156" fill="#e9783d" font-family="monospace" font-size="13">02</text><text x="101" y="156" fill="#d7e3e5" font-family="monospace" font-size="13">&lt;html lang="en"&gt;</text>
+<text x="73" y="183" fill="#e9783d" font-family="monospace" font-size="13">03</text><text x="101" y="183" fill="#d7e3e5" font-family="monospace" font-size="13">&lt;head&gt;</text>
+<text x="73" y="210" fill="#e9783d" font-family="monospace" font-size="13">04</text><text x="117" y="210" fill="#9fd6a2" font-family="monospace" font-size="13">&lt;title&gt;Ideas&lt;/title&gt;</text>
+<text x="73" y="237" fill="#e9783d" font-family="monospace" font-size="13">05</text><text x="101" y="237" fill="#d7e3e5" font-family="monospace" font-size="13">&lt;/head&gt;</text>
+<text x="73" y="264" fill="#e9783d" font-family="monospace" font-size="13">06</text><text x="101" y="264" fill="#d7e3e5" font-family="monospace" font-size="13">&lt;body&gt;</text>
+<text x="73" y="291" fill="#e9783d" font-family="monospace" font-size="13">07</text><text x="117" y="291" fill="#8ec7e0" font-family="monospace" font-size="13">&lt;h1&gt;Hello web&lt;/h1&gt;</text>
+<text x="73" y="318" fill="#e9783d" font-family="monospace" font-size="13">08</text><text x="101" y="318" fill="#d7e3e5" font-family="monospace" font-size="13">&lt;/body&gt;</text>
+<rect x="390" y="101" width="196" height="252" rx="5" fill="#f7f2e8"/>
+<rect x="390" y="101" width="196" height="29" rx="5" fill="#4b87a8"/>
+<circle cx="405" cy="115" r="3" fill="#f7f2e8"/><circle cx="417" cy="115" r="3" fill="#f7f2e8"/><circle cx="429" cy="115" r="3" fill="#f7f2e8"/>
+<rect x="407" y="147" width="160" height="12" rx="3" fill="#202326"/>
+<rect x="407" y="169" width="130" height="6" rx="3" fill="#b4c4c7"/>
+<rect x="407" y="181" width="148" height="6" rx="3" fill="#b4c4c7"/>
+<rect x="407" y="207" width="73" height="57" rx="3" fill="#e9783d"/>
+<rect x="489" y="207" width="78" height="57" rx="3" fill="#4b87a8"/>
+<rect x="407" y="278" width="160" height="7" rx="3" fill="#b4c4c7"/>
+<rect x="407" y="292" width="119" height="7" rx="3" fill="#b4c4c7"/>
+<rect x="407" y="315" width="70" height="21" rx="3" fill="#202326"/>
+<text x="442" y="329" text-anchor="middle" fill="#f7f2e8" font-family="monospace" font-size="9">DEPLOY</text>
+<rect x="101" y="334" width="9" height="15" fill="#e9783d"/>
+<text x="53" y="399" fill="#202326" font-family="monospace" font-size="12" font-weight="700" letter-spacing="2">WRITE / STYLE / BUILD</text>
+<text x="585" y="399" text-anchor="end" fill="#4b87a8" font-family="monospace" font-size="12">v.01</text>
+</svg>
+</div>
+</section>
+<div class="layout">
+<aside class="sidebar"><div class="label">On this page</div><nav>
+<a href="#course-description">Course description</a><a href="#prerequisites">Prerequisites</a><a href="#student-learning-outcomes">Learning outcomes</a><a href="#course-content">Course content</a><a href="#sensitive-topics">Sensitive topics &amp; dialogue</a><a href="#instructional-process">Instructional process</a><a href="#grading">Grading</a><a href="#attendance-policies">Attendance</a><a href="#university-student-learning-outcomes">University outcomes</a><a href="#preferred-name">Student resources &amp; policies</a><a href="#calendar">Course calendar</a>
+</nav></aside><main>
+<h2 id="course-description">Course description</h2>
+<p>This course extends the concepts covered in introductory web design. Students solve advanced communication and design problems while addressing technical considerations such as responsive production, accessibility, usability, web standards, security, and user experience. Through hands-on studio projects, students develop interactive, multimedia-rich websites and practice contemporary design, development, testing, and deployment workflows.</p>
+<div class="callout"><strong>Course goal</strong><br>Develop advanced web design and production skills through experimentation, iterative development, critique, and the creation of functional, accessible, and responsive web experiences.</div>
+<h2 id="student-learning-objectives">Student learning outcomes</h2>
+<p>Upon successful completion of this course, students will be able to:</p>
+<ol>
+<li><strong>Apply</strong> advanced HTML and CSS techniques to create responsive, standards-compliant web interfaces.</li>
+<li><strong>Design</strong> effective web interfaces using visual communication, typography, information architecture, usability, and accessibility principles.</li>
+<li><strong>Develop</strong> interactive web experiences using JavaScript and contemporary web technologies.</li>
+<li><strong>Integrate</strong> optimized images, audio, video, animation, and other multimedia into functional web projects.</li>
+<li><strong>Evaluate</strong> websites for usability, accessibility, performance, and security, and implement appropriate improvements.</li>
+<li><strong>Create and deploy</strong> a functional website demonstrating advanced web design and development skills.</li>
+<li><strong>Critique and refine</strong> web design projects in response to design goals, technical requirements, and feedback.</li>
+</ol>
+<h2 id="course-content">Course content</h2>
+<h3>Advanced Web Design &amp; Development</h3>
+<ul><li>Advanced HTML5 and semantic markup</li><li>Advanced CSS, responsive layouts, and contemporary web standards</li><li>CSS positioning, containers, and layout frameworks</li></ul>
+<h3>User Experience &amp; Visual Design</h3>
+<ul><li>Information architecture and interface design</li><li>Web typography, visual hierarchy, and branding</li><li>Usability and accessibility principles</li></ul>
+<h3>Interactive &amp; Multimedia Web Design</h3>
+<ul><li>JavaScript and interactive interface elements</li><li>Image optimization, audio, video, and multimedia integration</li><li>CSS transitions, animation, and advanced visual effects</li></ul>
+<h3>Web Production &amp; Deployment</h3>
+<ul><li>Testing, troubleshooting, and optimization</li><li>Web hosting, server basics, and website deployment</li><li>SSL and foundational website security practices</li></ul>
+<h3>Studio Projects &amp; Professional Practice</h3>
+<ul><li>Advanced web design projects and iterative development</li><li>Design critique, presentation, and refinement</li><li>Creation and deployment of a complete website</li></ul>
+<h2 id="required-text">Required text, tools, and online resources</h2>
+<p>Course readings, demonstrations, and project instructions will be provided through class activities and D2L. Students will need access to a computer, a modern web browser, and a code editor. Additional tools will be identified as projects require them.</p>
+<ul>
+<li><a href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer">MDN Web Docs</a> — HTML, CSS, JavaScript, accessibility, and web standards.</li>
+<li><a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a> — interactive web development lessons.</li>
+<li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a> — code repositories, version control, and collaboration.</li>
+<li><a href="https://codepen.io/" target="_blank" rel="noopener noreferrer">CodePen</a> — browser-based HTML, CSS, and JavaScript experimentation.</li>
+</ul>
+<h2 id="university-student-learning-outcomes">University undergraduate student learning outcomes</h2>
+<p>Upon earning an undergraduate degree from East Stroudsburg University, students will value creativity, diversity, ethical behavior, and professionalism. They will achieve college-level proficiency in the following university-wide student learning outcomes:</p>
+<ol><li>Demonstrate an understanding of their role as citizens of a diverse, global society.</li><li>Utilize critical thinking skills.</li><li>Communicate orally, in writing, and through other formats.</li><li>Demonstrate information literacy and technological skills.</li><li>Apply scientific reasoning to solve problems.</li><li>Create and/or critique various forms of media.</li><li>Understand various models for the healthy development of the whole person.</li></ol>
+<h2 id="instructional-process">Instructional process</h2>
+<p>AMDE 355 is organized as an advanced, project-based studio. Class meetings combine technical demonstrations and instruction with sustained hands-on development, troubleshooting, individual feedback, and critique.</p>
+<ul><li>Instructor demonstrations and technical mini-lessons</li><li>Studio/lab time for project development and experimentation</li><li>Weekly technical exercises and applied design assignments</li><li>Project critiques, presentations, and peer feedback</li><li>Iterative testing, revision, and final website production</li></ul>
+<p>Students are responsible for backing up their work regularly and maintaining project files throughout the semester.</p>
+<h2 id="grading">Course assessment and grading</h2>
+<p>Projects and assignments are evaluated for technical execution, visual communication, creativity, problem-solving, usability, accessibility, craftsmanship, response to feedback, and completion of stated requirements.</p>
+<div class="table-wrap"><table><thead><tr><th>Assessment</th><th>Weight</th></tr></thead><tbody>
+<tr><td>Weekly Technical Exercises &amp; Assignments</td><td>25%</td></tr>
+<tr><td>Advanced Web Design Projects</td><td>30%</td></tr>
+<tr><td>Midterm Project</td><td>15%</td></tr>
+<tr><td>Final Website Project</td><td>25%</td></tr>
+<tr><td>Participation, Critiques &amp; Presentations</td><td>5%</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>100%</strong></td></tr>
+</tbody></table></div>
+<h2 id="project-rubric">Project rubric</h2>
+<p>Projects are evaluated according to the following criteria:</p>
+<ul><li><strong>Design and communication:</strong> clear purpose, audience awareness, visual hierarchy, and effective interface decisions.</li><li><strong>Technical execution:</strong> appropriate use of HTML, CSS, JavaScript, responsive techniques, and relevant tools.</li><li><strong>Usability and accessibility:</strong> clear navigation, readable content, inclusive design, and testing across screen sizes.</li><li><strong>Creative development:</strong> experimentation, originality, problem-solving, and thoughtful iteration.</li><li><strong>Craftsmanship and completion:</strong> working functionality, clean presentation, testing, refinement, and meeting project requirements.</li><li><strong>Critique and reflection:</strong> ability to explain design decisions, respond to feedback, and identify improvements.</li></ul>
+<h2 id="evaluation">Evaluation and studio expectations</h2>
+<p>Students are expected to participate in studio activities, arrive prepared to work, meet project deadlines, present work for critique, and provide constructive feedback. Project critiques may include discussion of design decisions, code structure, functionality, accessibility, and the development process.</p>
+<p>Academic integrity is reinforced through demonstrations and critiques in which students explain their choices, show how their websites work, and discuss their process.</p>
+<h2 id="dmet-outcomes">Undergraduate AMDE outcomes</h2>
+<ul><li><strong>Creation Process:</strong> apply a systematic approach to the creative process of multimedia design and production.</li><li><strong>Design Production:</strong> use principles, aesthetics, and professional techniques to produce media to contemporary standards.</li><li><strong>Social Communication:</strong> engage in ethical communication and demonstrate cross-cultural awareness.</li><li><strong>Vision Formulation:</strong> develop a vision for media and technology design that promotes creativity, effective communication, and collaborative problem-solving.</li><li><strong>Critical Thought:</strong> critically evaluate the impact and implications of media they create and consume.</li><li><strong>Professional Contribution:</strong> contribute professionally across creative industries.</li><li><strong>Career Ready:</strong> address evolving standards, techniques, and media formats.</li></ul>
+<h2 id="attendance-policies">Attendance policies</h2>
+<p>One unexcused absence is permitted. More than one absence lowers the final grade. Four absences may result in a failing grade regardless of work completed. Attendance is taken at the end of class. Three tardies equal one absence. If you will be late or absent and know ahead of time, email the instructor in advance.</p>
+<p>A project not ready at the beginning of class or handed in after a critique on the due date will be penalized by one letter grade for each class it is late. An absence or limited lab access is not an excuse for late work. Projects more than three days late will not be accepted. All assignments are due at the start of class. Participate actively in critiques, respect classmates, and give presenters your attention. Class disturbances will not be tolerated. Phones should be turned off; texting is not allowed during the course.</p>
+<h2 id="academic-integrity">Academic integrity policy</h2>
+<p>All students are expected to engage in academically honest work. Identify facts and sources accurately. Do not submit work generated by an AI program as your own; material generated by AI must be cited like any other reference material. Willful academic dishonesty, including copying from websites, AI tools, print sources, or other people, may be referred to the Office of Student Conduct and Community Standards and may result in failure.</p>
+<h2 id="intellectual-property">Protecting faculty intellectual property and student privacy</h2>
+<p>ESU prohibits recording or screenshots of any class or reproducing course materials without written permission from the faculty member and any other individual whose participation is recorded. This includes lectures, class activities, publications, presentations, handouts, videos, tables, graphs, and discussions. Violations may result in discipline and/or legal action. Approved OASIS accommodations remain in effect.</p>
+<h2 id="title-ix">Title IX statement</h2>
+<p>East Stroudsburg University and its faculty are committed to a safe and productive educational environment. Faculty have reporting obligations regarding incidents of sexual violence and abuse as described in the university policy. Resources: <a href="http://www4.esu.edu/titleix/">ESU Title IX</a>.</p>
+<h2 id="dei">ESU diversity, equity, and inclusion statement</h2>
+<p>ESU is committed to challenging bias and creating a supportive campus climate that contributes to a just, global, and diverse society. Students are encouraged to use campus resources and report bias incidents, discrimination, or harassment. <a href="https://www.esu.edu/about/history_beliefs/diversity-equity-inclusion.cfm">ESU DEI statement</a>.</p>
+<h2 id="extended-absence">Extended student absence procedure</h2>
+<p>The Dean of Students can assist students who miss at least three class days due to illness, personal, or family emergencies. Students or family members can contact 570-422-3461. See the <a href="https://www.esu.edu/registrar/extended_absence.cfm">extended absence procedure</a>.</p>
+<h2 id="accommodations">Accommodation statement</h2>
+<p>Students who need disability accommodations may contact OASIS at 570-422-3954. Students who already have accommodations should give the professor reasonable notice before requesting an accommodation.</p>
+<h2 id="mental-health">Mental health</h2>
+<p>University Counseling Services provides free, confidential Counseling and Psychological Services (CAPS). Call 570-422-3277 or visit <a href="https://www.esu.edu/counseling/index.cfm">ESU Counseling Services</a>. In a crisis or emotional distress, call or text 988.</p>
+<h2 id="webcam">Webcam requirement for synchronous online classes</h2>
+<p>This is included in the supplied syllabus as a standard statement for courses that require webcams. If applicable, sessions or assessments may use Zoom or other instructor-selected technologies, including webcam, screen monitoring, recording, or proctoring tools. Contact the instructor with questions or concerns.</p>
+<h2 id="lab-rules">Cleanliness and lab rules</h2><p>Thoroughly clean your work area in Rosenkrans Hall East before leaving. Follow all computer lab rules, both verbal and posted.</p>
+<h2 id="course-changes">Changes in course requirements</h2><p>The instructor may modify course requirements or timing as circumstances dictate. Students will receive adequate notification.</p>
+<h2 id="student-work">Permission to use student work</h2><p>Students allow Dr. D’Angelo to use assignments, homework, and exams for research, departmental review, accreditation, and web postings unless a student notifies him in writing in advance.</p>
+<h2 id="calendar">Course calendar</h2>
+<p>The course is organized into 15 instructional weeks. Topics and project milestones may be adjusted as needed; changes will be announced in class and through D2L.</p>
+<div class="table-wrap"><table><thead><tr><th>Week</th><th>Topics / Studio Activities</th><th>Project Milestone</th></tr></thead><tbody>
+<tr><td>01</td><td>Course introduction; advanced web design workflow; review of HTML/CSS foundations; project planning.</td><td>Studio exercise</td></tr>
+<tr><td>02</td><td>Advanced HTML5, semantic markup, and accessible document structure.</td><td>Technical exercise</td></tr>
+<tr><td>03</td><td>Advanced CSS, layout systems, reusable styles, and interface consistency.</td><td>Layout study</td></tr>
+<tr><td>04</td><td>Responsive design for desktop, tablet, and mobile; flexible layouts and media queries.</td><td>Responsive prototype</td></tr>
+<tr><td>05</td><td>Web typography, visual hierarchy, branding, and design systems.</td><td>Visual design study</td></tr>
+<tr><td>06</td><td>Information architecture, navigation, usability, and interface design.</td><td>Interface / navigation plan</td></tr>
+<tr><td>07</td><td>JavaScript fundamentals and interactive web elements.</td><td>Interactive exercise</td></tr>
+<tr><td>08</td><td>Midterm project development, presentation, and critique.</td><td>Midterm project</td></tr>
+<tr><td>09</td><td>Optimized images, audio, video, and multimedia integration.</td><td>Multimedia implementation</td></tr>
+<tr><td>10</td><td>CSS transitions, animation, and advanced visual effects.</td><td>Interaction study</td></tr>
+<tr><td>11</td><td>Accessibility, usability testing, responsive QA, and performance improvements.</td><td>Testing and revision</td></tr>
+<tr><td>12</td><td>Frameworks and contemporary web development tools; selecting tools for project needs.</td><td>Framework/tool exercise</td></tr>
+<tr><td>13</td><td>Web hosting, deployment, SSL, foundational security, and troubleshooting.</td><td>Deployment test</td></tr>
+<tr><td>14</td><td>Final website studio: individual instruction, testing, refinement, and preparation for critique.</td><td>Final project development</td></tr>
+<tr><td>15</td><td>Final website presentations, class critique, reflection, and project submission.</td><td>Final website project</td></tr>
+</tbody></table></div>
+</main><footer><div class="foot-inner"><span>AMDE 355 · Advanced Web Design</span><span>Introduction to Web Design / An introduction to HTML, CSS, and web design.</span></div></footer>
+</div></body></html>
